@@ -1,0 +1,12 @@
+# .github/workflows/ci.yml  — LTC2949 unit test
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build and run unit tests
+        run: |
+          gcc -std=c11 -Wall -Wextra ltc2949.c ltc2949_test.c -o ltc_test
+          ./ltc_test
